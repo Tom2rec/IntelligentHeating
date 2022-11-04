@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping(path = "user")
-interface UserEndpoints {
+@RequestMapping(path = "/user")
+public interface UserEndpoints {
 
-    @PostMapping
+    @PostMapping("register/single")
     ResponseEntity<Void> registerSingleUser(UserCreateRequest userCreateRequest);
 
-    @PostMapping
+    @PostMapping("/register/multiple")
     ResponseEntity<Void> registerMultipleUsers(List<UserCreateRequest> userCreateRequest);
 
-    @PostMapping
+    @PostMapping("/login")
     ResponseEntity<Void> login(LoginRequest loginRequest);
 
     @GetMapping("/{id}")

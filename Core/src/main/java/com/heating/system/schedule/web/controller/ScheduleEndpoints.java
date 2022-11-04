@@ -25,7 +25,7 @@ public interface ScheduleEndpoints {
     ResponseEntity<Void> scheduleRoom(@PathVariable("id") UUID roomId,
                                       @RequestBody ScheduleRoomRequest scheduleRoomRequest);
 
-    @PostMapping("room/{id}")
+    @PostMapping("room/{id}/admin")
     ResponseEntity<Void> scheduleRoomByAdmin(@PathVariable("id") UUID roomId,
                                              @RequestBody ScheduleRoomRequest scheduleRoomRequest);
 }

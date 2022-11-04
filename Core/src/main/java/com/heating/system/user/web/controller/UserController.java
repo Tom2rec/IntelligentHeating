@@ -6,10 +6,12 @@ import com.heating.system.user.model.response.UserInfoResponse;
 import com.heating.system.user.web.service.contract.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
 
+@RestController
 @AllArgsConstructor
 public class UserController implements UserEndpoints{
     private final UserService userService;
