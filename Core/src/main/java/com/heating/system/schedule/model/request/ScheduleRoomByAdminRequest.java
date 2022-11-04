@@ -5,13 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
-public class ScheduleRoomRequest {
-    private String cron;
-    private ZonedDateTime dateFrom;
-    private ZonedDateTime dateTo;
-    private Integer durationInMinutes;
+public class ScheduleRoomByAdminRequest extends ScheduleRoomRequest{
+    private UUID userId;
 }

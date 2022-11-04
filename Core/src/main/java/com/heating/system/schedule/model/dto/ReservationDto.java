@@ -1,17 +1,18 @@
-package com.heating.system.schedule.model.request;
+package com.heating.system.schedule.model.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
-public class ScheduleRoomRequest {
-    private String cron;
+public class ReservationDto {
+    private String name;
     private ZonedDateTime dateFrom;
     private ZonedDateTime dateTo;
-    private Integer durationInMinutes;
+    private UUID userId;
 }
