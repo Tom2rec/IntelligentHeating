@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Builder
 public class ScheduleRoomByAdminRequest extends ScheduleRoomRequest{
     private UUID userId;
 }
