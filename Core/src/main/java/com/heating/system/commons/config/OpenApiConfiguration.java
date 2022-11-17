@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class OpenApiConfiguration {
 
     @Bean
-    public OpenAPI springTennisOpenAPI() {
+    public OpenAPI springHeatingSystemOpenAPI() {
         SpringDocUtils.getConfig().replaceWithSchema(LocalTime.class, new StringSchema().example("18:00:00"));
         return new OpenAPI()
                 .info(new Info().title("Heating System")

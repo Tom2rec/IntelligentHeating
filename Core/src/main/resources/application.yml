@@ -25,7 +25,7 @@ spring:
           notification-client:
             provider: keycloak
             client-id: app-backend # nazwa zdefiniowanego w keycloaku klienta
-            client-secret: 2fb1a4bb-47fc-45e2-955f-f43c9b0c76ec # secret z keycloaka
+            client-secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d # secret z keycloaka
             authorization-grant-type: client_credentials
         provider:
           keycloak:
