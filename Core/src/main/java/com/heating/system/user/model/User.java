@@ -2,20 +2,21 @@ package com.heating.system.user.model;
 
 
 import com.heating.system.commons.jpa.AbstractBaseEntity;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "heatingsystem")
 public class User extends AbstractBaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID id;
 
     private String keycloakUserId;

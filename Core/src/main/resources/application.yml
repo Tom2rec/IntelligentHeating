@@ -1,5 +1,7 @@
 server:
   port: 8880
+  servlet:
+    context-path: /heatingsystem/api
 
 springdoc:
   swagger-ui:
@@ -32,5 +34,3 @@ spring:
 auth:
   endpoints:
     unsecured: /actuator/**, /v3/api-docs/**, /swagger-ui/**
-  issuers:
-    - http://10.10.101.101:30080/auth/realms/app
