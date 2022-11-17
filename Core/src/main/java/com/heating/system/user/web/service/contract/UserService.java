@@ -5,11 +5,13 @@ import com.heating.system.user.model.request.LoginRequest;
 import com.heating.system.user.model.request.UserCreateRequest;
 import com.heating.system.user.model.request.UserUpdateRequest;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
 
-    void register(UserCreateRequest userCreateRequest);
+    void registerSingleUser(UserCreateRequest userCreateRequest);
+    void registerMultipleUsers(List<UserCreateRequest> userCreateRequest);
 
     void login(LoginRequest loginRequest);
 

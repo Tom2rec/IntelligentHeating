@@ -1,8 +1,7 @@
 package com.heating.system.schedule.web.controller;
 
 import com.heating.system.schedule.model.request.ScheduleRoomRequest;
-import com.heating.system.schedule.model.response.AllRoomInfoResponse;
-import com.heating.system.schedule.model.response.RoomInfoResponse;
+import com.heating.system.schedule.model.response.ScheduleRoomInfoResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +17,15 @@ import java.util.UUID;
 public interface ScheduleEndpoints {
 
     @GetMapping("room/{id}")
-    ResponseEntity<RoomInfoResponse> getDailyRoomInfo(@PathVariable("id") UUID roomId, @RequestParam("dateTime") ZonedDateTime zonedDateTime);
-
-    @GetMapping("room")
-    ResponseEntity<AllRoomInfoResponse> getDailyAllRoomInfo(@RequestParam("dateTime") ZonedDateTime zonedDateTime);
+    ResponseEntity<ScheduleRoomInfoResponse> getDailyScheduleRoomInfo(@PathVariable("id") UUID roomId,
+                                                                      @RequestParam("dateFrom") ZonedDateTime dateFrom,
+                                                                      @RequestParam("dateTo") ZonedDateTime dateTo);
 
     @PostMapping("room/{id}")
-    ResponseEntity<Void> scheduleRoom(@PathVariable("id") UUID roomId, @RequestBody ScheduleRoomRequest scheduleRoomRequest);
+    ResponseEntity<Void> scheduleRoom(@PathVariable("id") UUID roomId,
+                                      @RequestBody ScheduleRoomRequest scheduleRoomRequest);
+
+    @PostMapping("room/{id}/admin")
+    ResponseEntity<Void> scheduleRoomByAdmin(@PathVariable("id") UUID roomId,
+                                             @RequestBody ScheduleRoomRequest scheduleRoomRequest);
 }
