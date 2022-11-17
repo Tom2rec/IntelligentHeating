@@ -1,6 +1,7 @@
 package com.heating.system.user.model;
 
 
+import com.heating.system.commons.jpa.AbstractBaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends AbstractBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

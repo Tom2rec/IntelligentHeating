@@ -4,3 +4,33 @@ server:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5431/heatingsystem
+    username: db
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/db.changelog-master.xml
+    default-schema: heatingsystem
+  security:
+    oauth2:
+      client:
+        registration:
+          notification-client:
+            provider: keycloak
+            client-id: app-backend # nazwa zdefiniowanego w keycloaku klienta
+            client-secret: 2fb1a4bb-47fc-45e2-955f-f43c9b0c76ec # secret z keycloaka
+            authorization-grant-type: client_credentials
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8024/auth/realms/app
+
+auth:
+  endpoints:
+    unsecured: /actuator/**, /v3/api-docs/**, /swagger-ui/**
+  issuers:
+    - http://10.10.101.101:30080/auth/realms/app
