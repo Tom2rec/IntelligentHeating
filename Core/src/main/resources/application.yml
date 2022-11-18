@@ -37,7 +37,7 @@ app:
     password: keycloak
     api-path: http://localhost:8024/auth/
     redirect-uri: http://localhost
-    client-id: admin-backend
+    client-id: app-backend
     client-secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d
     realm: app
 

@@ -2,10 +2,7 @@ package com.heating.system.keycloak.connector;
 
 import com.heating.system.keycloak.config.properties.KeycloakProperties;
 import com.heating.system.keycloak.model.dto.CredentialDto;
-import com.heating.system.keycloak.model.request.KeycloakLoginRequest;
-import com.heating.system.keycloak.model.request.KeycloakRefreshRequest;
-import com.heating.system.keycloak.model.request.KeycloakRegisterRequest;
-import com.heating.system.keycloak.model.request.KeycloakRoleRequest;
+import com.heating.system.keycloak.model.request.*;
 import com.heating.system.keycloak.model.response.KeycloakLoginResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,10 +18,20 @@ public class KeycloakConnector {
     private final KeycloakClient keycloakClient;
     private final KeycloakProperties keycloakProperties;
 
-    public KeycloakLoginResponse login() {
-        return keycloakClient.loginAdmin(KeycloakLoginRequest.builder()
+    public KeycloakLoginResponse loginAdmin() {
+        return keycloakClient.loginAdmin(KeycloakLoginAdminRequest.builder()
                 .password(keycloakProperties.getPassword())
                 .username(keycloakProperties.getLogin())
+                .client_id(keycloakProperties.getClientId())
+                .grant_type("password")
+                .build()).getBody();
+    }
+
+    public KeycloakLoginResponse login(String username, String password) {
+        return keycloakClient.login(KeycloakLoginRequest.builder()
+                .password(password)
+                .username(username)
+                .client_secret(keycloakProperties.getClientSecret())
                 .client_id(keycloakProperties.getClientId())
                 .grant_type("password")
                 .build()).getBody();

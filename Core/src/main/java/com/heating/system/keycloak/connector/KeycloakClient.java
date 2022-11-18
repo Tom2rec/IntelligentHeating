@@ -1,10 +1,7 @@
 package com.heating.system.keycloak.connector;
 
 import com.heating.system.keycloak.config.FeignConfig;
-import com.heating.system.keycloak.model.request.KeycloakLoginRequest;
-import com.heating.system.keycloak.model.request.KeycloakRefreshRequest;
-import com.heating.system.keycloak.model.request.KeycloakRegisterRequest;
-import com.heating.system.keycloak.model.request.KeycloakRoleRequest;
+import com.heating.system.keycloak.model.request.*;
 import com.heating.system.keycloak.model.response.KeycloakLoginResponse;
 import feign.Headers;
 import feign.Response;
@@ -21,7 +18,7 @@ public interface KeycloakClient {
 
     @PostMapping(value = "realms/master/protocol/openid-connect/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @Headers("Content-Type: application/x-www-form-urlencoded")
-    ResponseEntity<KeycloakLoginResponse> loginAdmin(KeycloakLoginRequest request);
+    ResponseEntity<KeycloakLoginResponse> loginAdmin(KeycloakLoginAdminRequest request);
 
     @PostMapping(value = "realms/${app.keycloak.realm}/protocol/openid-connect/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @Headers("Content-Type: application/x-www-form-urlencoded")

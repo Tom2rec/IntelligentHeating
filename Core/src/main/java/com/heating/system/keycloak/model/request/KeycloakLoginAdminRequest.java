@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class KeycloakLoginRequest {
+public class KeycloakLoginAdminRequest {
     private String username;
     private String password;
     private String grant_type;
     private String client_id;
-    private String client_secret;
 }
