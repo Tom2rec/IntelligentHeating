@@ -20,7 +20,6 @@ public interface UserEndpoints {
     ResponseEntity<Void> registerMultipleUsers(@RequestBody CreateMultipleUsersRequest createMultipleUsersRequest);
 
     @PostMapping("/login")
-    //@Secured(ROLE_USER)
     ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest);
 
     @GetMapping("/{id}")

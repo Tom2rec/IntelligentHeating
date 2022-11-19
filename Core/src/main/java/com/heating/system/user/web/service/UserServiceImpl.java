@@ -26,11 +26,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registerSingleUser(CreateUserRequest createUserRequest) {
+        var loginAdminResponse = keycloakConnector.loginAdmin();
         var keycloakUserId = keycloakConnector.registerUser(
             createUserRequest.getEmail(),
             createUserRequest.getPassword(),
             createUserRequest.getFirstName(),
-            createUserRequest.getLastName()
+            createUserRequest.getLastName(),
+            loginAdminResponse.getAccessToken()
         );
 
         var user = User.builder()

@@ -22,7 +22,7 @@ public class KeycloakConnector {
         return keycloakClient.loginAdmin(KeycloakLoginAdminRequest.builder()
                 .password(keycloakProperties.getPassword())
                 .username(keycloakProperties.getLogin())
-                .client_id(keycloakProperties.getClientId())
+                .client_id("admin-cli")
                 .grant_type("password")
                 .build()).getBody();
     }
@@ -46,7 +46,7 @@ public class KeycloakConnector {
                 .build()).getBody();
     }
 
-    public String registerUser(String email, String password, String firstName, String lastName) {
+    public String registerUser(String email, String password, String firstName, String lastName, String bearerToken) {
         KeycloakRegisterRequest request = KeycloakRegisterRequest.builder()
                 .email(email)
                 .username(email)
@@ -56,7 +56,7 @@ public class KeycloakConnector {
                         .value(password)
                         .build()))
                 .build();
-        var response = keycloakClient.registerUser(request);
+        var response = keycloakClient.registerUser(request, "Bearer " + bearerToken);
         return response.headers().get("Location").toString().substring(response.headers().get("Location").toString().lastIndexOf('/') + 1).replace("]", ""); //userId
     }
 
