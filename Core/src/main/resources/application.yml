@@ -25,20 +25,20 @@ spring:
           notification-client:
             provider: keycloak
             client-id: app-backend # nazwa zdefiniowanego w keycloaku klienta
-            client-secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d # secret z keycloaka
+            client-secret: LuPhFzyMlETrg9oYUljsfoX6pHRJqAGo # secret z keycloaka
             authorization-grant-type: client_credentials
         provider:
           keycloak:
-            issuer-uri: http://localhost:8024/auth/realms/app
+            issuer-uri: http://130.61.149.252:8443/auth/realms/app
 
 app:
   keycloak:
     login: keycloak
     password: keycloak
-    api-path: http://localhost:8024/auth/
-    redirect-uri: http://localhost
+    api-path: http://130.61.149.252:8443/auth/
+    redirect-uri: http://130.61.149.252:8443/
     client-id: app-backend
-    client-secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d
+    client-secret: LuPhFzyMlETrg9oYUljsfoX6pHRJqAGo
     realm: app
 
 auth:
