@@ -1,29 +1,26 @@
 package com.heating.system.user.web.controller;
 
+import com.heating.system.user.model.request.CreateMultipleUsersRequest;
+import com.heating.system.user.model.request.CreateUserRequest;
 import com.heating.system.user.model.request.LoginRequest;
-import com.heating.system.user.model.request.UserCreateRequest;
+import com.heating.system.user.model.response.LoginResponse;
 import com.heating.system.user.model.response.UserInfoResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RequestMapping(path = "/user")
 public interface UserEndpoints {
 
     @PostMapping("register/single")
-    ResponseEntity<Void> registerSingleUser(UserCreateRequest userCreateRequest);
+    ResponseEntity<Void> registerSingleUser(@RequestBody CreateUserRequest userCreateRequest);
 
     @PostMapping("/register/multiple")
-    ResponseEntity<Void> registerMultipleUsers(List<UserCreateRequest> userCreateRequest);
+    ResponseEntity<Void> registerMultipleUsers(@RequestBody CreateMultipleUsersRequest createMultipleUsersRequest);
 
     @PostMapping("/login")
-    ResponseEntity<Void> login(LoginRequest loginRequest);
+    ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest);
 
     @GetMapping("/{id}")
     ResponseEntity<UserInfoResponse> getUserInfo(@PathVariable("id") UUID id);
