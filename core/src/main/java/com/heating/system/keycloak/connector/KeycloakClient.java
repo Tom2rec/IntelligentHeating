@@ -29,6 +29,9 @@ public interface KeycloakClient {
     @Headers("Content-Type: application/json")
     Response registerUser(KeycloakRegisterRequest request, @RequestHeader("Authorization") String bearerToken);
 
+    @PutMapping(value = "admin/realms/${app.keycloak.realm}/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    Response updateUser(@PathVariable("userId") String userId, UpdateUserRequest request);
+
     @PutMapping(value = "admin/realms/${app.keycloak.realm}/users/{userId}/execute-actions-email", consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Void> executeActionsEmail(@PathVariable("userId") String userId, @RequestParam(value = "client_id", required = false) String clientId,
                                              @RequestParam(value = "redirect_uri", required = false) String redirectUri);

@@ -3,6 +3,7 @@ package com.heating.system.user.web.controller;
 import com.heating.system.user.model.request.CreateMultipleUsersRequest;
 import com.heating.system.user.model.request.CreateUserRequest;
 import com.heating.system.user.model.request.LoginRequest;
+import com.heating.system.user.model.request.UpdateUserRequest;
 import com.heating.system.user.model.response.LoginResponse;
 import com.heating.system.user.model.response.UserInfoResponse;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public interface UserEndpoints {
 
     @PostMapping("/login")
     ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest);
+
+    @PutMapping("/update/{id}")
+    ResponseEntity<UserInfoResponse> updateUser(@PathVariable("id") UUID id, @RequestBody UpdateUserRequest updateUserRequest);
 
     @GetMapping("/{id}")
     ResponseEntity<UserInfoResponse> getUserInfo(@PathVariable("id") UUID id);
