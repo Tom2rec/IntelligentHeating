@@ -60,6 +60,15 @@ public class KeycloakConnector {
         return response.headers().get("Location").toString().substring(response.headers().get("Location").toString().lastIndexOf('/') + 1).replace("]", ""); //userId
     }
 
+    public void updateUser(String email, String firstName, String lastName, String userId) {
+        UpdateUserRequest request = UpdateUserRequest.builder()
+                .email(email)
+                .firstName(firstName)
+                .lastName(lastName)
+                .build();
+        var response = keycloakClient.updateUser(userId, request);
+    }
+
     public void executeActionsEmail(String userId) {
         log.info("sendVerifyEmail - invoked, userId: " + userId);
         keycloakClient.executeActionsEmail(userId, keycloakProperties.getClientId());
