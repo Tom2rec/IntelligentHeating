@@ -8,12 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.mapstruct.control.DeepClone;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -23,8 +25,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@DeepClone
 @Table(name = "building", schema = "heatingsystem")
-public class Building extends BaseUUIDEntity {
+public class Building extends BaseUUIDEntity implements Serializable {
 
     private String description;
 

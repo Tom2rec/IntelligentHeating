@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.mapstruct.control.DeepClone;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -19,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,10 +32,12 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@DeepClone
 @Table(name = "room", schema = "heatingsystem")
-public class Room extends BaseUUIDEntity {
+public class Room extends BaseUUIDEntity implements Serializable {
 
     // TODO Add syntax validation ex. string in format C2:112
+    @NotNull
     private String description;
 
     @OneToMany

@@ -5,6 +5,7 @@ import com.heating.system.infrastructure.model.Room;
 import com.heating.system.infrastructure.model.building.temperature.model.RoomTemperatureInfo;
 import com.heating.system.infrastructure.model.building.temperature.repository.BuildingTemperatureInfoRepository;
 import com.heating.system.simulator.physics.ChangeStateFunction;
+import com.heating.system.simulator.utils.BuildingCloneHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,26 +22,29 @@ public class TemperatureService {
         TemperatureService.buildingTemperatureInfoRepository = buildingTemperatureInfoRepository;
     }
 
-    public static void updateTemperature(Building building, ZonedDateTime time, int minutesFromLastChange) {
-        changeTemperatureInBuilding(building, minutesFromLastChange);
+    public static Building updateTemperature(Building building, ZonedDateTime time, int minutesFromLastChange) {
+        Building updatedBuilding = changeTemperatureInBuilding(building, minutesFromLastChange);
+        saveTemperatureInfo(updatedBuilding, time);
 
-        saveTemperatureInfo(building, time);
+        return updatedBuilding;
     }
 
-    private static void changeTemperatureInBuilding(Building building, int minutesFromLastChange) {
-        for (var room : building.getRooms()) {
-            List<Room> neighbours = building.getRooms()
+    private static Building changeTemperatureInBuilding(Building building, int minutesFromLastChange) {
+        Building buildingCopy = BuildingCloneHelper.clone(building);
+        for (var room : buildingCopy.getRooms()) {
+            List<Room> neighbours = buildingCopy.getRooms()
                     .stream()
                     .filter(r -> room.getNeighbourRoomIds().contains(r.getId()))
                     .toList();
-            room.setTemperatureInCelsius(ChangeStateFunction.updateTemperature(room, neighbours, minutesFromLastChange));
+            room.setTemperatureInCelsius(
+                    ChangeStateFunction.updateTemperature(room, neighbours, minutesFromLastChange));
         }
+        return buildingCopy;
     }
 
     private static void saveTemperatureInfo(Building building, ZonedDateTime time) {
         RoomTemperatureInfo.RoomTemperatureInfoBuilder<?, ?> roomTemperatureInfoBuilder =
                 RoomTemperatureInfo.builder().creationDate(time);
-
 
         for (var room : building.getRooms()) {
             RoomTemperatureInfo temperatureInfo = roomTemperatureInfoBuilder.temperatureInCelsius(room.getTemperatureInCelsius())

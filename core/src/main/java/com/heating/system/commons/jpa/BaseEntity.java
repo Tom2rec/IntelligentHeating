@@ -29,7 +29,9 @@ public abstract class BaseEntity {
 
     @PrePersist
     protected void prePersist() {
-        creationDate = ZonedDateTime.now();
+        if (creationDate == null) {
+            creationDate = ZonedDateTime.now();
+        }
         updateDate = ZonedDateTime.now();
     }
 

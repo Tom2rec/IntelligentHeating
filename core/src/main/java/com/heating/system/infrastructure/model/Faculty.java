@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -21,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "faculty", schema = "heatingsystem")
-public class Faculty extends BaseUUIDEntity {
+public class Faculty extends BaseUUIDEntity implements Serializable {
 
     private String name;
 

@@ -26,25 +26,33 @@ public class Simulation extends CommonConsts {
     }
 
     private void executeSimulation() {
-//        int simulationCycles = simulationLengthInDays * 24 * 60 / gapBetweenCheckingTemperatureInMinutes;
+        //        int simulationCycles = simulationLengthInDays * 24 * 60 / gapBetweenCheckingTemperatureInMinutes;
         int simulationCycles = 4;
         ZonedDateTime startTime = ZonedDateTime.now();
         for (int i = 0; i < simulationCycles; i++) {
-            TemperatureService.updateTemperature(building, startTime.plus((long) i * gapBetweenCheckingTemperatureInMinutes, ChronoUnit.MINUTES), gapBetweenCheckingTemperatureInMinutes);
+            building = TemperatureService.updateTemperature(building,
+                    startTime.plus((long) i * gapBetweenCheckingTemperatureInMinutes, ChronoUnit.MINUTES),
+                    gapBetweenCheckingTemperatureInMinutes);
         }
     }
 
     private static void showStartBanner() {
         System.out.println();
-        System.out.println("  _____ __             __  _                     _                 __      __  _           \n" +
-                "  / ___// /_____ ______/ /_(_)___  ____ _   _____(_)___ ___  __  __/ /___ _/ /_(_)___  ____ \n" +
-                "  \\__ \\/ __/ __ `/ ___/ __/ / __ \\/ __ `/  / ___/ / __ `__ \\/ / / / / __ `/ __/ / __ \\/ __ \\\n" +
-                " ___/ / /_/ /_/ / /  / /_/ / / / / /_/ /  (__  ) / / / / / / /_/ / / /_/ / /_/ / /_/ / / / /\n" +
-                "/____/\\__/\\__,_/_/   \\__/_/_/ /_/\\__, /  /____/_/_/ /_/ /_/\\__,_/_/\\__,_/\\__/_/\\____/_/ /_/ \n" +
-                "                                /____/                                                      ");
+        System.out.println(
+                "  _____ __             __  _                     _                 __      __  _           \n" +
+                        "  / ___// /_____ ______/ /_(_)___  ____ _   _____(_)___ ___  __  __/ /___ _/ /_(_)___  ____ \n"
+                        +
+                        "  \\__ \\/ __/ __ `/ ___/ __/ / __ \\/ __ `/  / ___/ / __ `__ \\/ / / / / __ `/ __/ / __ \\/"
+                        + " __ \\\n"
+                        +
+                        " ___/ / /_/ /_/ / /  / /_/ / / / / /_/ /  (__  ) / / / / / / /_/ / / /_/ / /_/ / /_/ / / / /\n"
+                        +
+                        "/____/\\__/\\__,_/_/   \\__/_/_/ /_/\\__, /  /____/_/_/ /_/ /_/\\__,_/_/\\__,"
+                        + "_/\\__/_/\\____/_/ /_/ \n"
+                        +
+                        "                                /____/                                                      ");
         System.out.println();
     }
-
 
     private void showEndBanner() {
         System.out.println();
