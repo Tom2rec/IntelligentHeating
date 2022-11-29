@@ -28,12 +28,14 @@ public class ChangeStateFunction {
         outdoorSurface += room.getNotConnectedWallLengthInMeters() * 2 * room.getHeightInMeters();
 
         double room_U = room.getThermalConductivity() / room.getWallThickness();
-        double room_Volume = room.getHeightInMeters() * room.getNotConnectedWallLengthInMeters() * room.getConnectedWallWidthInMeters();
-
-        double calculatedTemperature = (room.getRadiatorPowerInWattsPerSquareMeters() + P_prom * outdoorSurface * room_U +
-                room_U * outdoorSurface * (toKelvin(T_zew) - toKelvin(room.getTemperatureInCelsius())) +
-                calculateNeighbourImpact(room, neighbours)) * minutesFromLastChange * 60 /
-                (2.5 * room.getRadiatorPowerInWattsPerSquareMeters() * room_Volume) + room.getTemperatureInCelsius();
+        double room_Volume = room.getHeightInMeters() * room.getNotConnectedWallLengthInMeters()
+                * room.getConnectedWallWidthInMeters();
+        // room.getRadiatorPowerInWattsPerSquareMeters() + P_prom * outdoorSurface * room_U +
+        double calculatedTemperature = (
+                ((room_U * outdoorSurface * (toKelvin(T_zew) - toKelvin(room.getTemperatureInCelsius())) +
+                        calculateNeighbourImpact(room, neighbours)) * minutesFromLastChange * 60) /
+                        (2.5 * room.getRadiatorPowerInWattsPerSquareMeters() * room_Volume)) + toKelvin(
+                room.getTemperatureInCelsius());
 
         return toCelsius(calculatedTemperature);
     }
