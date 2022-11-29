@@ -1,4 +1,4 @@
-package com.heating.system.building.model.dto;
+package com.heating.system.infrastructure.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

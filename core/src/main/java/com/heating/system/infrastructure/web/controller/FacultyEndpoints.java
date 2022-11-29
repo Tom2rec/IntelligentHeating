@@ -1,8 +1,8 @@
-package com.heating.system.building.web.controller;
+package com.heating.system.infrastructure.web.controller;
 
-import com.heating.system.building.model.response.AllBuildingsResponse;
-import com.heating.system.building.model.response.AllFacultiesResponse;
-import com.heating.system.building.model.response.AllRoomsResponse;
+import com.heating.system.infrastructure.model.response.AllBuildingsResponse;
+import com.heating.system.infrastructure.model.response.AllFacultiesResponse;
+import com.heating.system.infrastructure.model.response.AllRoomsResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

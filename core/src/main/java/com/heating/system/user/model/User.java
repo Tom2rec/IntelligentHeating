@@ -1,25 +1,24 @@
 package com.heating.system.user.model;
 
 
-import com.heating.system.commons.jpa.AbstractBaseEntity;
-import lombok.*;
+import com.heating.system.commons.jpa.BaseUUIDEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "user", schema = "heatingsystem")
-public class User extends AbstractBaseEntity {
-
-    @Id
-    private UUID id;
+public class User extends BaseUUIDEntity {
 
     private String keycloakUserId;
 

@@ -1,6 +1,6 @@
-package com.heating.system.building.model.response;
+package com.heating.system.infrastructure.model.response;
 
-import com.heating.system.building.model.dto.BuildingDto;
+import com.heating.system.infrastructure.model.dto.BuildingDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

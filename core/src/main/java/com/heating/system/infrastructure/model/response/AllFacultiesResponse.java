@@ -1,4 +1,4 @@
-package com.heating.system.building.model.response;
+package com.heating.system.infrastructure.model.response;
 
 import lombok.Builder;
 import lombok.Getter;

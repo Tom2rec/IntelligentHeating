@@ -1,5 +1,6 @@
 package com.heating.system.commons.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,12 +17,14 @@ import java.time.ZonedDateTime;
 @Setter
 @MappedSuperclass
 @SuperBuilder
-public abstract class AbstractBaseEntity {
+public abstract class BaseEntity {
 
     @Column(name = "creation_date", nullable = false)
+    @JsonIgnore
     protected ZonedDateTime creationDate;
 
     @Column(name = "update_date", nullable = false)
+    @JsonIgnore
     protected ZonedDateTime updateDate;
 
     @PrePersist
