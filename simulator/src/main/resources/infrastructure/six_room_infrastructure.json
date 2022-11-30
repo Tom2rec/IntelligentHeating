@@ -1,0 +1,104 @@
+{
+  "id": "03935bda-b0aa-4b6d-8bb2-e1c4ca043b06",
+  "description": "C2",
+  "rooms": [
+    {
+      "id": "ca1959e5-2fc2-4820-b8cd-d7b84a9d0856",
+      "description": "C2:101",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "01106d43-6b1c-438f-ba70-eca0cac8c1e1"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "01106d43-6b1c-438f-ba70-eca0cac8c1e1",
+      "description": "C2:102",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "ca1959e5-2fc2-4820-b8cd-d7b84a9d0856",
+        "2d2c388d-c08c-4007-9b72-74455a5436db"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "2d2c388d-c08c-4007-9b72-74455a5436db",
+      "description": "C2:103",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "01106d43-6b1c-438f-ba70-eca0cac8c1e1",
+        "1ad5d32f-0be6-4bb1-b1bd-8c6330acd97d"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "1ad5d32f-0be6-4bb1-b1bd-8c6330acd97d",
+      "description": "C2:104",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "2d2c388d-c08c-4007-9b72-74455a5436db",
+        "72bdb129-80bc-4a53-84cd-12c564f9b89e"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "72bdb129-80bc-4a53-84cd-12c564f9b89e",
+      "description": "C2:105",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "1ad5d32f-0be6-4bb1-b1bd-8c6330acd97d",
+        "49fbc46d-ad57-4f79-92e5-e2b30018981c"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "49fbc46d-ad57-4f79-92e5-e2b30018981c",
+      "description": "C2:106",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.5,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "72bdb129-80bc-4a53-84cd-12c564f9b89e"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    }
+  ],
+  "faculty": {
+    "id": "69c08c9e-30c4-4cf0-87d6-3d0967c19716",
+    "name": "EAIiIB"
+  }
+}
