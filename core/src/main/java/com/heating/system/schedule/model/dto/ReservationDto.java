@@ -4,15 +4,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
 public class ReservationDto {
+
     private String name;
-    private ZonedDateTime dateFrom;
-    private ZonedDateTime dateTo;
+    private LocalDateTime dateFrom;
+    private LocalDateTime dateTo;
     private UUID userId;
 }

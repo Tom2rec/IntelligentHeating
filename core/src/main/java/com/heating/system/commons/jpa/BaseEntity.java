@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -21,22 +21,22 @@ public abstract class BaseEntity {
 
     @Column(name = "creation_date", nullable = false)
     @JsonIgnore
-    protected ZonedDateTime creationDate;
+    protected LocalDateTime creationDate;
 
     @Column(name = "update_date", nullable = false)
     @JsonIgnore
-    protected ZonedDateTime updateDate;
+    protected LocalDateTime updateDate;
 
     @PrePersist
     protected void prePersist() {
         if (creationDate == null) {
-            creationDate = ZonedDateTime.now();
+            creationDate = LocalDateTime.now();
         }
-        updateDate = ZonedDateTime.now();
+        updateDate = LocalDateTime.now();
     }
 
     @PreUpdate
     protected void preUpdate() {
-        updateDate = ZonedDateTime.now();
+        updateDate = LocalDateTime.now();
     }
 }

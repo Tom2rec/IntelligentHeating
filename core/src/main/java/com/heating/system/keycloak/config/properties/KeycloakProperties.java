@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @ConfigurationProperties("app.keycloak")
 @Component
@@ -29,5 +29,5 @@ public class KeycloakProperties {
     private String realm;
     private String accessToken;
     private String refreshToken;
-    private ZonedDateTime refreshTokenValidDate;
+    private LocalDateTime refreshTokenValidDate;
 }

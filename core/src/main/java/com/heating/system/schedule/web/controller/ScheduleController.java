@@ -6,14 +6,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
 public class ScheduleController implements ScheduleEndpoints{
+
     @Override
-    public ResponseEntity<ScheduleRoomInfoResponse> getDailyScheduleRoomInfo(UUID roomId, ZonedDateTime dateFrom, ZonedDateTime dateTo) {
+    public ResponseEntity<ScheduleRoomInfoResponse> getDailyScheduleRoomInfo(UUID roomId, LocalDateTime dateFrom,
+            LocalDateTime dateTo) {
         return null;
     }
 

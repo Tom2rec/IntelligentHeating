@@ -1,4 +1,4 @@
-package com.heating.system.infrastructure.model.building.temperature.model;
+package com.heating.system.infrastructure.model.room.temperature.model;
 
 import com.heating.system.commons.jpa.BaseUUIDEntity;
 import lombok.AllArgsConstructor;

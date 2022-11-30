@@ -2,27 +2,27 @@ package com.heating.system.simulator;
 
 import com.heating.system.infrastructure.model.Building;
 import com.heating.system.infrastructure.model.Room;
-import com.heating.system.infrastructure.model.building.temperature.model.RoomTemperatureInfo;
-import com.heating.system.infrastructure.model.building.temperature.repository.BuildingTemperatureInfoRepository;
+import com.heating.system.infrastructure.model.room.temperature.model.RoomTemperatureInfo;
+import com.heating.system.infrastructure.model.room.temperature.repository.RoomTemperatureInfoRepository;
 import com.heating.system.simulator.physics.ChangeStateFunction;
 import com.heating.system.simulator.utils.BuildingCloneHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class TemperatureService {
 
-    private static BuildingTemperatureInfoRepository buildingTemperatureInfoRepository;
+    private static RoomTemperatureInfoRepository roomTemperatureInfoRepository;
 
     @Autowired
-    public TemperatureService(BuildingTemperatureInfoRepository buildingTemperatureInfoRepository) {
-        TemperatureService.buildingTemperatureInfoRepository = buildingTemperatureInfoRepository;
+    public TemperatureService(RoomTemperatureInfoRepository roomTemperatureInfoRepository) {
+        TemperatureService.roomTemperatureInfoRepository = roomTemperatureInfoRepository;
     }
 
-    public static Building updateTemperature(Building building, ZonedDateTime time, int minutesFromLastChange) {
+    public static Building updateTemperature(Building building, LocalDateTime time, int minutesFromLastChange) {
         Building updatedBuilding = changeTemperatureInBuilding(building, minutesFromLastChange);
         saveTemperatureInfo(updatedBuilding, time);
 
@@ -42,16 +42,17 @@ public class TemperatureService {
         return buildingCopy;
     }
 
-    private static void saveTemperatureInfo(Building building, ZonedDateTime time) {
+    private static void saveTemperatureInfo(Building building, LocalDateTime time) {
         RoomTemperatureInfo.RoomTemperatureInfoBuilder<?, ?> roomTemperatureInfoBuilder =
                 RoomTemperatureInfo.builder().creationDate(time);
 
         for (var room : building.getRooms()) {
-            RoomTemperatureInfo temperatureInfo = roomTemperatureInfoBuilder.temperatureInCelsius(room.getTemperatureInCelsius())
-                    .isRadiatorOn(room.isRadiatorOn())
-                    .roomId(room.getId())
-                    .build();
-            buildingTemperatureInfoRepository.save(temperatureInfo);
+            RoomTemperatureInfo temperatureInfo =
+                    roomTemperatureInfoBuilder.temperatureInCelsius(room.getTemperatureInCelsius())
+                            .isRadiatorOn(room.isRadiatorOn())
+                            .roomId(room.getId())
+                            .build();
+            roomTemperatureInfoRepository.save(temperatureInfo);
         }
     }
 }

@@ -1,0 +1,40 @@
+{
+  "id": "12ff0a00-8da7-439f-927c-72d1ff280866",
+  "description": "C2",
+  "rooms": [
+    {
+      "id": "aa8789ce-ac01-4c85-84d1-2f4a3e290934",
+      "description": "C2:101",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 300.0,
+      "heightInMeters": 2.0,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "6764029f-6bfe-449a-a9bd-212629e01d9d"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": true
+    },
+    {
+      "id": "6764029f-6bfe-449a-a9bd-212629e01d9d",
+      "description": "C2:102",
+      "connectedWallWidthInMeters": 6.0,
+      "notConnectedWallLengthInMeters": 10.0,
+      "radiatorPowerInWattsPerSquareMeters": 1.0,
+      "heightInMeters": 2.0,
+      "thermalConductivity": 0.26,
+      "wallThickness": 0.2,
+      "neighbourRoomIds": [
+        "aa8789ce-ac01-4c85-84d1-2f4a3e290934"
+      ],
+      "temperatureInCelsius": 16.0,
+      "radiatorOn": false
+    }
+  ],
+  "faculty": {
+    "id": "f0917ed0-6f7d-4255-aa12-15c4c9404f23",
+    "name": "EAIiIB"
+  }
+}

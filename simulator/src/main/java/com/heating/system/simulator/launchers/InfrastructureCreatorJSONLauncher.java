@@ -6,7 +6,7 @@ import com.heating.system.infrastructure.model.Room;
 import com.heating.system.simulator.launchers.config.InfrastructureConsts;
 import com.heating.system.simulator.utils.JSONWriter;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +38,7 @@ public class InfrastructureCreatorJSONLauncher extends InfrastructureConsts {
                     .description("C2:10" + i)
                     .neighbourRoomIds(new ArrayList<>())
                     .connectedWallWidthInMeters(CONNECTED_WALL_WIDTH_IN_METERS)
-                    .creationDate(ZonedDateTime.now())
+                    .creationDate(LocalDateTime.now())
                     .temperatureInCelsius(INITIAL_TEMPERATURE_IN_CELSIUS)
                     .isRadiatorOn(true)
                     .radiatorPowerInWattsPerSquareMeters(RADIATOR_POWER_IN_WATTS_PER_SQUARE_METERS)

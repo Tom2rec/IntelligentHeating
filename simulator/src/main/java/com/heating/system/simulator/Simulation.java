@@ -5,7 +5,7 @@ import com.heating.system.simulator.common.CommonConsts;
 import com.heating.system.simulator.utils.JSONReader;
 import lombok.AllArgsConstructor;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @AllArgsConstructor
@@ -28,7 +28,7 @@ public class Simulation extends CommonConsts {
     private void executeSimulation() {
         //        int simulationCycles = simulationLengthInDays * 24 * 60 / gapBetweenCheckingTemperatureInMinutes;
         int simulationCycles = 4;
-        ZonedDateTime startTime = ZonedDateTime.now();
+        LocalDateTime startTime = LocalDateTime.now();
         for (int i = 0; i < simulationCycles; i++) {
             building = TemperatureService.updateTemperature(building,
                     startTime.plus((long) i * gapBetweenCheckingTemperatureInMinutes, ChronoUnit.MINUTES),
