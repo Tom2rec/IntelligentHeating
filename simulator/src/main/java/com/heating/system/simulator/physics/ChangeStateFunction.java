@@ -10,9 +10,9 @@ import java.util.List;
 public class ChangeStateFunction {
 
     /*
-     * Solar radiation power in W/m^2
+     * Atmospheric Pressure
      */
-    private static final double P_prom = 1367;
+    private static final double P_atm = 98000;
 
     /*
      * Outdoor temperature in Kelvin degrees
@@ -30,12 +30,12 @@ public class ChangeStateFunction {
         double room_U = room.getThermalConductivity() / room.getWallThickness();
         double room_Volume = room.getHeightInMeters() * room.getNotConnectedWallLengthInMeters()
                 * room.getConnectedWallWidthInMeters();
-        // room.getRadiatorPowerInWattsPerSquareMeters() + P_prom * outdoorSurface * room_U +
         double calculatedTemperature = (
-                ((room_U * outdoorSurface * (toKelvin(T_zew) - toKelvin(room.getTemperatureInCelsius())) +
+                ((room.getRadiatorPowerInWattsPerSquareMeters() +
+                        room_U * outdoorSurface * (T_zew - toKelvin(room.getTemperatureInCelsius())) +
                         calculateNeighbourImpact(room, neighbours)) * minutesFromLastChange * 60) /
-                        (2.5 * room.getRadiatorPowerInWattsPerSquareMeters() * room_Volume)) + toKelvin(
-                room.getTemperatureInCelsius());
+                        (2.5 * P_atm * room_Volume)) +
+                toKelvin(room.getTemperatureInCelsius());
 
         return toCelsius(calculatedTemperature);
     }
@@ -44,9 +44,9 @@ public class ChangeStateFunction {
         double result = 0;
 
         for (var neighbour : neighbours) {
-            result += room.getConnectedWallWidthInMeters() *
+            result += room.getConnectedWallWidthInMeters() * room.getHeightInMeters() *
                     (toKelvin(neighbour.getTemperatureInCelsius()) - toKelvin(room.getTemperatureInCelsius())) *
-                    room.getThermalConductivity() / (room.getWallThickness() + neighbour.getWallThickness());
+                    (room.getThermalConductivity() / (room.getWallThickness() + neighbour.getWallThickness()));
         }
 
         return result;

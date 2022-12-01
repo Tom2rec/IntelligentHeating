@@ -27,7 +27,7 @@ public class Simulation extends CommonConsts {
 
     private void executeSimulation() {
         //        int simulationCycles = simulationLengthInDays * 24 * 60 / gapBetweenCheckingTemperatureInMinutes;
-        int simulationCycles = 4;
+        int simulationCycles = 24;
         LocalDateTime startTime = LocalDateTime.now();
         for (int i = 0; i < simulationCycles; i++) {
             building = TemperatureService.updateTemperature(building,
