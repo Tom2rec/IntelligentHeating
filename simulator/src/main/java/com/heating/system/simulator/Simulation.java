@@ -1,7 +1,7 @@
 package com.heating.system.simulator;
 
 import com.heating.system.infrastructure.model.Building;
-import com.heating.system.simulator.common.CommonConsts;
+import com.heating.system.simulator.common.CommonInfrastructureConsts;
 import com.heating.system.simulator.utils.JSONReader;
 import lombok.AllArgsConstructor;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 @AllArgsConstructor
-public class Simulation extends CommonConsts {
+public class Simulation extends CommonInfrastructureConsts {
 
     private int gapBetweenCheckingTemperatureInMinutes;
     private Building building;
@@ -27,7 +27,7 @@ public class Simulation extends CommonConsts {
 
     private void executeSimulation() {
         //        int simulationCycles = simulationLengthInDays * 24 * 60 / gapBetweenCheckingTemperatureInMinutes;
-        int simulationCycles = 24;
+        int simulationCycles = 12 * 12;
         LocalDateTime startTime = LocalDateTime.now();
         for (int i = 0; i < simulationCycles; i++) {
             building = TemperatureService.updateTemperature(building,

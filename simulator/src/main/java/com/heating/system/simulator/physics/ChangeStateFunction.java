@@ -17,7 +17,7 @@ public class ChangeStateFunction {
     /*
      * Outdoor temperature in Kelvin degrees
      */
-    private static final double T_zew = toKelvin(8.0);
+    private static final double T_zew = toKelvin(1.0);
 
     public static double updateTemperature(Room room, List<Room> neighbours, int minutesFromLastChange) {
         double outdoorSurface = 0;
