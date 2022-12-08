@@ -41,6 +41,19 @@ app:
     client-secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d
     realm: app
 
+keycloak:
+  realm: app
+  resource: app-backend
+  auth-server-url: http://localhost:8024/auth
+  credentials:
+    secret: c9e769e7-9a1a-4e70-8a69-d92dc10fba4d
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
 auth:
   endpoints:
     unsecured: /actuator/**, /v3/api-docs/**, /swagger-ui/**
