@@ -61,24 +61,13 @@ public class KeycloakConnector {
     }
 
     public void updateUser(String email, String firstName, String lastName, String userId) {
+        log.info("updateUser - invoked: userId {}", userId);
         UpdateUserRequest request = UpdateUserRequest.builder()
                 .email(email)
                 .firstName(firstName)
                 .lastName(lastName)
                 .build();
-        var response = keycloakClient.updateUser(userId, request);
-    }
-
-    public void executeActionsEmail(String userId) {
-        log.info("sendVerifyEmail - invoked, userId: " + userId);
-        keycloakClient.executeActionsEmail(userId, keycloakProperties.getClientId());
-    }
-
-    public void addRole(String role) {
-        log.info("addRole - invoked, roleName: " + role);
-        keycloakClient.addRole(KeycloakRoleRequest.builder()
-                .name(role)
-                .build());
+        keycloakClient.updateUser(userId, request);
     }
 
     public void sendVerifyEmail(String userId) {
