@@ -9,7 +9,7 @@ springdoc:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5431/heatingsystem
+    url: jdbc:postgresql://localhost:5432/heatingsystem
     username: db
     password: admin
   jpa:
