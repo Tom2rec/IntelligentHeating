@@ -62,13 +62,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
-      - name: Set up JDK 17          
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-          java-package: jdk
+          
+      - name: Change to project director
+        run: pwd
 
       - name: Build using Maven
         run: mvn clean install
