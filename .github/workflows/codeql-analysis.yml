@@ -63,11 +63,11 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: Change to project director
-        run: pwd
+      - name: Change to project directory
+        run: cd core
 
       - name: Build using Maven
         run: mvn clean install
 
       - name: Starting app
-        run: pwd
+        run: service intelligent-heating-app restart
