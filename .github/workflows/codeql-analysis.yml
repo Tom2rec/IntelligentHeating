@@ -62,12 +62,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          
-      - name: Change to project directory
-        run: cd core
 
       - name: Build using Maven
-        run: mvn clean install
+        run: cd core && mvn clean install
 
       - name: Starting app
-        run: service intelligent-heating-app restart
+        run: sudo service intelligent-heating-app restart
