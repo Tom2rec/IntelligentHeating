@@ -67,4 +67,4 @@ jobs:
         run: cd core && mvn clean install
 
       - name: Starting app
-        run: sudo service intelligent-heating-app restart
+        run: service heating-java-app restart
