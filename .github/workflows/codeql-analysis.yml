@@ -62,6 +62,6 @@ jobs:
 
       - name: Build using Maven
         run: cd core && mvn clean install
-
-      - name: Starting app
-        run: service heating-java-app restart
+        
+      - name: Restart
+        run: sudo systemctl restart heating-java-app.service
