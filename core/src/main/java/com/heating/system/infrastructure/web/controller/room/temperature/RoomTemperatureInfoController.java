@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RoomTemperatureInfoController implements RoomTemperatureInfoEndpoints {

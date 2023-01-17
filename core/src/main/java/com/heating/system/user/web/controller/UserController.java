@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
 public class UserController implements UserEndpoints{
