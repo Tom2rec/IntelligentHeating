@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
 public class ScheduleController implements ScheduleEndpoints{
