@@ -5,6 +5,7 @@ import com.heating.system.schedule.model.response.ScheduleRoomInfoResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
