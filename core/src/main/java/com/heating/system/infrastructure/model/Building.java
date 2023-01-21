@@ -2,20 +2,13 @@ package com.heating.system.infrastructure.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.heating.system.commons.jpa.BaseUUIDEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.mapstruct.control.DeepClone;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -30,13 +23,15 @@ import java.util.List;
 public class Building extends BaseUUIDEntity implements Serializable {
 
     private String description;
+    // dorobic pole Walls - lista arrayek - trzy poziomy zagnieżdżenia!!
 
-    @OneToMany
-    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "building")
     @JsonManagedReference
-    private List<Room> rooms;
+    private List<Room> rooms = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "faculty_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "building")
+    private List<Floor> floors = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Faculty faculty;
 }
