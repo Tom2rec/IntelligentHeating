@@ -62,7 +62,7 @@ jobs:
           
       - name: Pull repository
         run: |
-          git pull origin main
+          git pull
 
       - name: Build using Maven
         run: cd core && mvn clean install
