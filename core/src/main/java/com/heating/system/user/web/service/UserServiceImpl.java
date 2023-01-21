@@ -63,7 +63,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         var keycloakLoginResponse = keycloakConnector.login(loginRequest.getEmail(), loginRequest.getPassword());
-        return keycloakMapper.mapToLoginResponse(keycloakLoginResponse);
+        var loginResponse =  keycloakMapper.mapToLoginResponse(keycloakLoginResponse);
+        loginResponse.setUserId(
+                userRepository.getUserByEmail(loginRequest.getEmail())
+                        .map(User::getId)
+                        .orElse(null)
+        );
+        return loginResponse;
     }
 
     @Override
