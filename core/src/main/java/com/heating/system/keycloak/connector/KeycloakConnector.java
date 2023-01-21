@@ -1,10 +1,10 @@
 package com.heating.system.keycloak.connector;
 
+import com.heating.system.commons.exception.LogInException;
 import com.heating.system.keycloak.config.properties.KeycloakProperties;
 import com.heating.system.keycloak.model.dto.CredentialDto;
 import com.heating.system.keycloak.model.request.*;
 import com.heating.system.keycloak.model.response.KeycloakLoginResponse;
-import com.heating.system.user.exception.LogInException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

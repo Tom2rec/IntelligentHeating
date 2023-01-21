@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -26,8 +26,7 @@ public class Faculty extends BaseUUIDEntity implements Serializable {
 
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "building_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "faculty")
     @JsonIgnore
     private List<Building> buildings;
 }

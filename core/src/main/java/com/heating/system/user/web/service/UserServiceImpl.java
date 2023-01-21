@@ -1,7 +1,7 @@
 package com.heating.system.user.web.service;
 
+import com.heating.system.commons.exception.UserNotFoundException;
 import com.heating.system.keycloak.connector.KeycloakConnector;
-import com.heating.system.user.exception.UserNotFoundException;
 import com.heating.system.user.mapper.KeycloakMapper;
 import com.heating.system.user.mapper.UserMapper;
 import com.heating.system.user.model.User;
