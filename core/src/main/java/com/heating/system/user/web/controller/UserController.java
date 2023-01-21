@@ -3,19 +3,20 @@ package com.heating.system.user.web.controller;
 import com.heating.system.user.model.request.CreateMultipleUsersRequest;
 import com.heating.system.user.model.request.CreateUserRequest;
 import com.heating.system.user.model.request.LoginRequest;
+import com.heating.system.user.model.request.UpdateUserRequest;
 import com.heating.system.user.model.response.LoginResponse;
 import com.heating.system.user.model.response.UserInfoResponse;
 import com.heating.system.user.web.service.contract.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
+@Slf4j
 public class UserController implements UserEndpoints{
     private final UserService userService;
 
@@ -27,7 +28,8 @@ public class UserController implements UserEndpoints{
 
     @Override
     public ResponseEntity<Void> registerMultipleUsers(CreateMultipleUsersRequest createMultipleUsersRequest) {
-        return null;
+        userService.registerMultipleUsers(createMultipleUsersRequest);
+        return ResponseEntity.noContent().build();
     }
 
     @Override
@@ -37,12 +39,14 @@ public class UserController implements UserEndpoints{
     }
 
     @Override
-    public ResponseEntity<UserInfoResponse> getUserInfo(UUID id) {
-        return null;
+    public ResponseEntity<UserInfoResponse> updateUser(UUID id, UpdateUserRequest updateUserRequest) {
+        var response = userService.update(id, updateUserRequest);
+        return ResponseEntity.ok(response);
     }
 
     @Override
-    public ResponseEntity<Void> deleteUser(UUID id) {
-        return null;
+    public ResponseEntity<UserInfoResponse> getUserInfo(UUID id) {
+        var response = userService.getUserInfo(id);
+        return ResponseEntity.ok(response);
     }
 }

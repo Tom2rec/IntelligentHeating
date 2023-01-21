@@ -4,6 +4,7 @@ import com.heating.system.keycloak.config.properties.KeycloakProperties;
 import com.heating.system.keycloak.model.dto.CredentialDto;
 import com.heating.system.keycloak.model.request.*;
 import com.heating.system.keycloak.model.response.KeycloakLoginResponse;
+import com.heating.system.user.exception.LogInException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -28,13 +29,20 @@ public class KeycloakConnector {
     }
 
     public KeycloakLoginResponse login(String username, String password) {
-        return keycloakClient.login(KeycloakLoginRequest.builder()
-                .password(password)
-                .username(username)
-                .client_secret(keycloakProperties.getClientSecret())
-                .client_id(keycloakProperties.getClientId())
-                .grant_type("password")
-                .build()).getBody();
+        try {
+            var keycloakLoginResponse = keycloakClient.login(KeycloakLoginRequest.builder()
+                    .password(password)
+                    .username(username)
+                    .client_secret(keycloakProperties.getClientSecret())
+                    .client_id(keycloakProperties.getClientId())
+                    .grant_type("password")
+                    .build()).getBody();
+            log.info("User: {} logged in!", username);
+            return keycloakLoginResponse;
+        } catch (Exception e) {
+            log.error("Problem occurred when logging in: ", e.getMessage());
+            throw new LogInException(e.getMessage());
+        }
     }
 
     public KeycloakLoginResponse refreshToken() {
@@ -60,16 +68,14 @@ public class KeycloakConnector {
         return response.headers().get("Location").toString().substring(response.headers().get("Location").toString().lastIndexOf('/') + 1).replace("]", ""); //userId
     }
 
-    public void executeActionsEmail(String userId) {
-        log.info("sendVerifyEmail - invoked, userId: " + userId);
-        keycloakClient.executeActionsEmail(userId, keycloakProperties.getClientId());
-    }
-
-    public void addRole(String role) {
-        log.info("addRole - invoked, roleName: " + role);
-        keycloakClient.addRole(KeycloakRoleRequest.builder()
-                .name(role)
-                .build());
+    public void updateUser(String email, String firstName, String lastName, String userId) {
+        log.info("updateUser - invoked: userId {}", userId);
+        UpdateUserRequest request = UpdateUserRequest.builder()
+                .email(email)
+                .firstName(firstName)
+                .lastName(lastName)
+                .build();
+        keycloakClient.updateUser(userId, request);
     }
 
     public void sendVerifyEmail(String userId) {
