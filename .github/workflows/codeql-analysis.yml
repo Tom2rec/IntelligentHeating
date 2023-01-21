@@ -59,6 +59,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          
+      - name: Pull repository
+        run: |
+          git pull origin main
 
       - name: Build using Maven
         run: cd core && mvn clean install
