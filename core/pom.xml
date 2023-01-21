@@ -30,9 +30,9 @@
                         ${project.basedir}/src/main/resources/db/changelog/${maven.build.timestamp}_changelog.postgresql.sql
                     </diffChangeLogFile>
                     <skip>false</skip>
-                    <url>jdbc:postgresql://localhost:5431/heatingsystem</url>
-                    <username>db</username>
-                    <password>admin</password>
+<!--                    <url>jdbc:postgresql://localhost:5431/heatingsystem</url>-->
+<!--                    <username>db</username>-->
+<!--                    <password>admin</password>-->
                 </configuration>
                 <dependencies>
                     <dependency>
