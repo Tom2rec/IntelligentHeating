@@ -1,6 +1,5 @@
 package com.heating.system.user.web.controller;
 
-import com.heating.system.commons.config.AppRoles;
 import com.heating.system.user.model.request.CreateMultipleUsersRequest;
 import com.heating.system.user.model.request.CreateUserRequest;
 import com.heating.system.user.model.request.LoginRequest;
@@ -8,7 +7,6 @@ import com.heating.system.user.model.request.UpdateUserRequest;
 import com.heating.system.user.model.response.LoginResponse;
 import com.heating.system.user.model.response.UserInfoResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -17,7 +15,6 @@ import java.util.UUID;
 public interface UserEndpoints {
 
     @PostMapping("register/single")
-    @PreAuthorize(AppRoles.USER)
     ResponseEntity<Void> registerSingleUser(@RequestBody CreateUserRequest userCreateRequest);
 
     @PostMapping("/register/multiple")
@@ -31,7 +28,4 @@ public interface UserEndpoints {
 
     @GetMapping("/{id}")
     ResponseEntity<UserInfoResponse> getUserInfo(@PathVariable("id") UUID id);
-
-    @DeleteMapping("/{id}")
-    ResponseEntity<Void> deleteUser(@PathVariable("id") UUID id);
 }
