@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ToString
 public class UserNotFoundException extends RuntimeException {
 
-    private final String message;
-
     public UserNotFoundException(String message) {
-        this.message = message;
+        super(message);
     }
 }

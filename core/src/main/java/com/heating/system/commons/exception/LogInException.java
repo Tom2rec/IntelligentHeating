@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ToString
 public class LogInException extends RuntimeException {
 
-    private final String message;
-
     public LogInException(String message) {
-        this.message = message;
+        super(message);
     }
 }

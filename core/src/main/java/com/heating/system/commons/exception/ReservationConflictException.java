@@ -4,11 +4,11 @@ import lombok.ToString;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
+@ResponseStatus(value = HttpStatus.CONFLICT)
 @ToString
-public class BuildingNotFoundException extends RuntimeException {
+public class ReservationConflictException extends RuntimeException {
 
-    public BuildingNotFoundException(String message) {
+    public ReservationConflictException(String message) {
         super(message);
     }
 }
