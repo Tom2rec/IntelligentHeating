@@ -28,7 +28,7 @@ public interface ScheduleEndpoints {
             @PathVariable("roomId") UUID roomId,
             @RequestParam("dateFrom") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime dateFrom,
             @RequestParam("dateTo") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) ZonedDateTime dateTo,
-            @PathVariable("roomId") UUID userId
+            @RequestParam("userId") UUID userId
     );
 
     @PostMapping("room/{roomId}")
