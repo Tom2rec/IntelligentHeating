@@ -1,0 +1,8 @@
+{
+  "realm": "app",
+  "auth-server-url": "http://130.61.149.252:8443/auth/",
+  "ssl-required": "none",
+  "resource": "web-app",
+  "public-client": true,
+  "confidential-port": 0
+}

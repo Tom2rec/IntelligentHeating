@@ -1,0 +1,28 @@
+#app, html {
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+
+.container-fluid{
+    height: calc(100% - 56px);
+}
+
+#map {
+    height: 100%;
+    flex: 1;
+}
+
+.sidebar {
+    flex: 1;
+}
+
+.reservations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+    grid-auto-rows: minmax(min-content, max-content);
+    row-gap: 50px;
+    column-gap: 15px;
+}
