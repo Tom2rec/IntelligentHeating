@@ -4,11 +4,11 @@ import lombok.ToString;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
 @ToString
-public class BuildingNotFoundException extends RuntimeException {
+public class InvalidDatesException extends RuntimeException {
 
-    public BuildingNotFoundException(String message) {
+    public InvalidDatesException(String message) {
         super(message);
     }
 }

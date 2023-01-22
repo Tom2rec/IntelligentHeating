@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 @ToString
-public class BuildingNotFoundException extends RuntimeException {
+public class ReservationNotFoundException extends RuntimeException {
 
-    public BuildingNotFoundException(String message) {
+    public ReservationNotFoundException(String message) {
         super(message);
     }
 }

@@ -3,14 +3,18 @@ package com.heating.system.schedule.model.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import java.time.ZonedDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 public class ScheduleRoomRequest {
-
-    private String cron;
-    private LocalDateTime dateFrom;
-    private LocalDateTime dateTo;
-    private Integer durationInMinutes;
+    @NotNull
+    private UUID userId;
+    @FutureOrPresent
+    private ZonedDateTime dateFrom;
+    @FutureOrPresent
+    private ZonedDateTime dateTo;
 }

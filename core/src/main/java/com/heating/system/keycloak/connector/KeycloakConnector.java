@@ -40,7 +40,7 @@ public class KeycloakConnector {
             log.info("User: {} logged in!", username);
             return keycloakLoginResponse;
         } catch (Exception e) {
-            log.error("Problem occurred when logging in: ", e.getMessage());
+            log.error("Problem occurred when logging in: {}", e.getMessage());
             throw new LogInException(e.getMessage());
         }
     }

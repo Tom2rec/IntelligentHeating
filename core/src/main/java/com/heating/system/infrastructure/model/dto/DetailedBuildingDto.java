@@ -14,6 +14,6 @@ public class DetailedBuildingDto {
     private UUID buildingId;
     private String description;
     private List<FloorDto> floors;
-    private List<RoomDto> rooms;
+    private List<DetailedRoomDto> rooms;
 
 }

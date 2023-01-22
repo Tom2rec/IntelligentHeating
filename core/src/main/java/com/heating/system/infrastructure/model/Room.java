@@ -3,6 +3,7 @@ package com.heating.system.infrastructure.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.heating.system.commons.jpa.BaseUUIDEntity;
+import com.heating.system.schedule.model.Reservation;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.mapstruct.control.DeepClone;
@@ -10,6 +11,7 @@ import org.mapstruct.control.DeepClone;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +33,9 @@ public class Room extends BaseUUIDEntity implements Serializable {
     @OneToMany
     @JsonIgnore
     private List<Room> neighbourRooms;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "room")
+    private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference

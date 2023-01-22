@@ -31,12 +31,12 @@ public class InfrastructureController implements InfrastructureEndpoints {
     }
 
     @Override
-    public ResponseEntity<DetailedBuildingResponse> getBuildingById(UUID buildingId) {
+    public ResponseEntity<DetailedBuildingResponse> getDetailedBuildingById(UUID buildingId) {
         return ResponseEntity.ok(new DetailedBuildingResponse(buildingService.getDetailedBuildingDto(buildingId)));
     }
 
     @Override
-    public ResponseEntity<AllRoomsResponse> getAllRoomsForBuilding(UUID facultyId, UUID buildingId) {
-        return null;
+    public ResponseEntity<AllRoomsResponse> getAllRoomsByBuildingId(UUID buildingId) {
+        return ResponseEntity.ok(new AllRoomsResponse(roomService.getAllRoomsByBuildingId(buildingId)));
     }
 }
