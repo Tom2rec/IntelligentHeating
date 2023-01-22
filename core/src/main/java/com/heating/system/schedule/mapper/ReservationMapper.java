@@ -13,6 +13,7 @@ public interface ReservationMapper {
     @Mapping(target = "reservationId", source = "id")
     @Mapping(target = "fullName", source = "reservation.user", qualifiedByName = "toFullName")
     @Mapping(target = "email", source = "reservation.user.email")
+    @Mapping(target = "status", source = "reservation.reservationStatus")
     ReservationDto mapToReservationDto(Reservation reservation);
 
     @Named("toFullName")

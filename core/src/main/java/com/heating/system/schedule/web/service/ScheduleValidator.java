@@ -53,5 +53,10 @@ public class ScheduleValidator {
         if(dateFrom.isAfter(dateTo) || dateFrom.isEqual(dateTo)) {
             throw new InvalidDatesException("DateTo must be grater than dateFrom!");
         }
+
+        var now = ZonedDateTime.now();
+        if(dateFrom.isBefore(now)) {
+            throw new InvalidDatesException("You can't schedule reservation with the past date");
+        }
     }
 }
