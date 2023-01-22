@@ -50,8 +50,7 @@ public class UserServiceImpl implements UserService {
         );
 
         var user = User.builder()
-                .id(UUID.randomUUID())
-                .keycloakUserId(keycloakUserId)
+                .id(UUID.fromString(keycloakUserId))
                 .firstName(createUserRequest.getFirstName())
                 .lastName(createUserRequest.getLastName())
                 .email(createUserRequest.getEmail())
@@ -76,7 +75,7 @@ public class UserServiceImpl implements UserService {
     public UserInfoResponse update(UUID id, UpdateUserRequest userUpdateRequest) {
         var user = userRepository.getUserById(id)
                 .orElseThrow(() -> new UserNotFoundException(String.format("User with UUID: %s not found", id)));
-        keycloakConnector.updateUser(userUpdateRequest.getEmail(), userUpdateRequest.getFirstName(), userUpdateRequest.getLastName(), user.getKeycloakUserId());
+        keycloakConnector.updateUser(userUpdateRequest.getEmail(), userUpdateRequest.getFirstName(), userUpdateRequest.getLastName(), user.getId().toString());
         return null;
     }
 

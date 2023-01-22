@@ -1,7 +1,7 @@
 package com.heating.system.user.model;
 
 
-import com.heating.system.commons.jpa.BaseUUIDEntity;
+import com.heating.system.commons.jpa.BaseEntity;
 import com.heating.system.schedule.model.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -23,9 +21,10 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "user", schema = "heatingsystem")
-public class User extends BaseUUIDEntity {
+public class User extends BaseEntity {
 
-    private String keycloakUserId;
+    @Id
+    private UUID id;
 
     private String firstName;
 
