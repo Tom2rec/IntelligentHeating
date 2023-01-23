@@ -1,5 +1,6 @@
 package com.heating.system.iotdevice.service;
 
+import com.heating.system.commons.exception.PlantNotFoundException;
 import com.heating.system.commons.exception.UserNotFoundException;
 import com.heating.system.iotdevice.mapper.PlantMapper;
 import com.heating.system.iotdevice.model.Plant;
@@ -45,5 +46,13 @@ public class PlantService {
         var createdPlant = plantRepository.saveAndFlush(plant);
 
         return plantMapper.mapPlantToDto(createdPlant);
+    }
+
+    public void deletePlant(UUID userId, Long plantId) {
+        ioTUserRepository.getUserById(userId)
+                .orElseThrow(() -> new UserNotFoundException("IoT user not found!"));
+        var plant = plantRepository.getPlantById(plantId)
+                .orElseThrow(() -> new PlantNotFoundException("Plant not found!"));
+        plantRepository.delete(plant);
     }
 }

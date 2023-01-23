@@ -10,6 +10,7 @@ import com.heating.system.iotdevice.service.IoTService;
 import com.heating.system.iotdevice.service.PlantService;
 import com.heating.system.user.model.response.LoginResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class IoTController {
     @PostMapping("/register")
     ResponseEntity<Void> registerSingleUser(@RequestBody CreateIoTUserRequest userCreateRequest) {
         ioTService.registerSingleUser(userCreateRequest);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")
@@ -47,6 +48,13 @@ public class IoTController {
     @PostMapping(value = "/user/{userId}/plant")
     ResponseEntity<AddNewPlantResponse> addNewPlant(@PathVariable("userId") UUID id,
                                                     @RequestBody AddNewPlantRequest request) {
-        return ResponseEntity.ok(new AddNewPlantResponse(plantService.addNewPlant(id, request)));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new AddNewPlantResponse(plantService.addNewPlant(id, request)));
+    }
+
+    @DeleteMapping(value = "/user/{userId}/plant/{plantId}")
+    ResponseEntity<Void> deletePlant(@PathVariable("userId") UUID userId, @PathVariable("plantId") Long plantId) {
+        plantService.deletePlant(userId, plantId);
+        return ResponseEntity.noContent().build();
     }
 }
