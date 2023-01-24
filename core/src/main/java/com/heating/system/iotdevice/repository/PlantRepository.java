@@ -13,4 +13,5 @@ public interface PlantRepository extends JpaRepository<Plant, Long> {
     List<Plant> getPlantsByUser_Id(UUID id);
 
     Optional<Plant> getPlantById(Long id);
+    Optional<Plant> getPlantBySensorName(String sensorName);
 }

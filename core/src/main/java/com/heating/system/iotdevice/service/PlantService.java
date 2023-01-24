@@ -33,16 +33,23 @@ public class PlantService {
     public PlantDto addNewPlant(UUID id, AddNewPlantRequest request) {
         var user = ioTUserRepository.getUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("IoT user not found!"));
-        var plant = new Plant();
-        plant.setLocation(request.getLocation());
-        plant.setFamiliarName(request.getFamiliarName());
-        plant.setSensorName(request.getSensorName());
-        plant.setMinTemperature(request.getMinTemperature());
-        plant.setMaxTemperature(request.getMaxTemperature());
-        plant.setMinHumidity(request.getMinHumidity());
-        plant.setMaxHumidity(request.getMaxHumidity());
-        plant.setUser(user);
 
+        Plant plant;
+        var plantOpt = plantRepository.getPlantBySensorName(request.getSensorName());
+        if(plantOpt.isPresent()) {
+            plant = plantOpt.get();
+            plant.setUser(user);
+        } else {
+            plant = new Plant();
+            plant.setLocation(request.getLocation());
+            plant.setFamiliarName(request.getFamiliarName());
+            plant.setSensorName(request.getSensorName());
+            plant.setMinTemperature(request.getMinTemperature());
+            plant.setMaxTemperature(request.getMaxTemperature());
+            plant.setMinHumidity(request.getMinHumidity());
+            plant.setMaxHumidity(request.getMaxHumidity());
+            plant.setUser(user);
+        }
         var createdPlant = plantRepository.saveAndFlush(plant);
 
         return plantMapper.mapPlantToDto(createdPlant);
