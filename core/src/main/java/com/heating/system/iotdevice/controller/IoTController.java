@@ -54,7 +54,7 @@ public class IoTController {
                 .body(new AddNewPlantResponse(plantService.addNewPlant(id, request)));
     }
 
-    @PatchMapping("/user/{userId}/plant/{plantId}")
+    @PostMapping("/user/{userId}/plant/{plantId}")
     ResponseEntity<UpdatePlantResponse> updatePlant(@PathVariable("userId") UUID userId,
                                                     @PathVariable("plantId") Long plantId,
                                                     @RequestBody UpdatePlantRequest request) {
