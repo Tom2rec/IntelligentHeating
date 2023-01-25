@@ -6,6 +6,7 @@ import com.heating.system.iotdevice.mapper.PlantMapper;
 import com.heating.system.iotdevice.model.Plant;
 import com.heating.system.iotdevice.model.dto.PlantDto;
 import com.heating.system.iotdevice.model.request.AddNewPlantRequest;
+import com.heating.system.iotdevice.model.request.UpdatePlantRequest;
 import com.heating.system.iotdevice.repository.IoTUserRepository;
 import com.heating.system.iotdevice.repository.PlantRepository;
 import lombok.RequiredArgsConstructor;
@@ -61,5 +62,35 @@ public class PlantService {
         var plant = plantRepository.getPlantById(plantId)
                 .orElseThrow(() -> new PlantNotFoundException("Plant not found!"));
         plantRepository.delete(plant);
+    }
+
+    public PlantDto updatePlant(UUID userId, Long plantId, UpdatePlantRequest request) {
+        var plant = plantRepository.getPlantByIdAndUser_Id(plantId, userId)
+                .orElseThrow(() -> new PlantNotFoundException("Plant not found!"));
+
+        if(request.getLocation() != null) {
+            plant.setLocation(request.getLocation());
+        }
+        if(request.getFamiliarName() != null) {
+            plant.setFamiliarName(request.getFamiliarName());
+        }
+        if(request.getSensorName() != null) {
+            plant.setSensorName(request.getSensorName());
+        }
+        if(request.getMinTemperature() != null) {
+            plant.setMinTemperature(request.getMinTemperature());
+        }
+        if(request.getMaxTemperature() != null) {
+            plant.setMaxTemperature(request.getMaxTemperature());
+        }
+        if(request.getMinHumidity() != null) {
+            plant.setMinHumidity(request.getMinHumidity());
+        }
+        if(request.getMaxHumidity() != null) {
+            plant.setMaxHumidity(request.getMaxHumidity());
+        }
+
+        plantRepository.save(plant);
+        return plantMapper.mapPlantToDto(plant);
     }
 }

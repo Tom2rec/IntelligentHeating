@@ -3,9 +3,11 @@ package com.heating.system.iotdevice.controller;
 import com.heating.system.iotdevice.model.request.AddNewPlantRequest;
 import com.heating.system.iotdevice.model.request.CreateIoTUserRequest;
 import com.heating.system.iotdevice.model.request.IoTLoginRequest;
+import com.heating.system.iotdevice.model.request.UpdatePlantRequest;
 import com.heating.system.iotdevice.model.response.AddNewPlantResponse;
 import com.heating.system.iotdevice.model.response.AllIoTUserPlantsResponse;
 import com.heating.system.iotdevice.model.response.IoTUserInfoResponse;
+import com.heating.system.iotdevice.model.response.UpdatePlantResponse;
 import com.heating.system.iotdevice.service.IoTService;
 import com.heating.system.iotdevice.service.PlantService;
 import com.heating.system.user.model.response.LoginResponse;
@@ -50,6 +52,14 @@ public class IoTController {
                                                     @RequestBody AddNewPlantRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new AddNewPlantResponse(plantService.addNewPlant(id, request)));
+    }
+
+    @PatchMapping("/user/{userId}/plant/{plantId}")
+    ResponseEntity<UpdatePlantResponse> updatePlant(@PathVariable("userId") UUID userId,
+                                                    @PathVariable("plantId") Long plantId,
+                                                    @RequestBody UpdatePlantRequest request) {
+        var response = plantService.updatePlant(userId, plantId, request);
+        return ResponseEntity.ok(new UpdatePlantResponse(response));
     }
 
     @DeleteMapping(value = "/user/{userId}/plant/{plantId}")
