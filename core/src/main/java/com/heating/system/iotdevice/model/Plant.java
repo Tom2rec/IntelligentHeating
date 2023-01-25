@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +33,7 @@ public class Plant extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private IoTUser user;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "plant")
+    private List<Measurement> measurements = new ArrayList<>();
 }
