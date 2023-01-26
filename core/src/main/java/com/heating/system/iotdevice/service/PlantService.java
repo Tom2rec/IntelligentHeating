@@ -40,6 +40,9 @@ public class PlantService {
         Plant plant;
         var plantOpt = plantRepository.getPlantBySensorName(request.getSensorName());
         if(plantOpt.isPresent()) {
+            if(plantOpt.get().getUser().getId().equals(id)) {
+                return plantMapper.mapPlantToDto(plantOpt.get());
+            }
             plant = plantOpt.get();
             plant.setUser(user);
             var measurements = measurementRepository.findAllByPlant_Id(plant.getId());
