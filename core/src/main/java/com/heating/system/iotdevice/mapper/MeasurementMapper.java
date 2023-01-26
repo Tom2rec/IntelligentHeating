@@ -19,6 +19,6 @@ public interface MeasurementMapper {
 
     @Named("addZone")
     default ZonedDateTime addZone(ZonedDateTime date) {
-        return date.withZoneSameInstant(ZoneId.of("UTC"));
+        return date.withZoneSameInstant(ZoneId.of("Europe/Warsaw"));
     }
 }
