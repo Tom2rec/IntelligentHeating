@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalTime;
 
 @Configuration
-public class OpenApiConfiguration {
+public class OpenApiConfig {
 
     @Bean
     public OpenAPI springHeatingSystemOpenAPI() {

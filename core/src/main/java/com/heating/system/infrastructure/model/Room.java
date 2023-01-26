@@ -1,19 +1,26 @@
 package com.heating.system.infrastructure.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.heating.system.commons.jpa.BaseUUIDEntity;
 import com.heating.system.schedule.model.Reservation;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.mapstruct.control.DeepClone;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -22,29 +29,25 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@DeepClone
 @Table(name = "room", schema = "heatingsystem")
 public class Room extends BaseUUIDEntity implements Serializable {
 
-    // TODO Add syntax validation ex. string in format C2:112
     @NotNull
     private String description;
 
-    @OneToMany
-    @JsonIgnore
-    private List<Room> neighbourRooms;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Room> neighbourRooms = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "room")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "room")
     private List<Reservation> reservations = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     @ToString.Exclude
     private Building building;
 
     private String roomJsonPath;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Floor floor;
 
     @Column(name = "connected_wall_width_in_meters")
@@ -68,13 +71,7 @@ public class Room extends BaseUUIDEntity implements Serializable {
     @Column(name = "wall_thickness")
     private double wallThickness;
 
-    @ElementCollection
-    @Transient
-    private List<UUID> neighbourRoomIds;
-
-    @Transient
     private double temperatureInCelsius;
 
-    @Transient
     private boolean isRadiatorOn;
 }

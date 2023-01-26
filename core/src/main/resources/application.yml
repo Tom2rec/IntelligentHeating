@@ -9,7 +9,7 @@ springdoc:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/heatingsystem
+    url: jdbc:postgresql://localhost:5431/heatingsystem
     username: db
     password: admin
   jpa:
@@ -44,3 +44,28 @@ app:
 auth:
   endpoints:
     unsecured: /actuator/**, /v3/api-docs/**, /swagger-ui/**
+
+# SIMULATION CONFIGURATION
+simulation:
+  logic:
+    min:
+      temperature:
+        during:
+          classes: 20
+        if:
+          unused: 15
+      minutes:
+        before:
+          classes:
+            to:
+              start:
+                heating: 15
+  calculation:
+    length:
+      minutes: 300
+  outside:
+    temperature: 15
+  atmospheric:
+    pressure: 98000
+  #    currently at every minute
+  cron: 0 1/1 * * * ?
