@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class MeasurementService {
     }
 
     private List<MeasurementDto> calculateAndAppendTimestamps(List<MeasurementDto> measurements, Integer interval) {
-        var now = LocalDateTime.now();
+        var now = ZonedDateTime.now();
         var counter = 0;
         for(var measurement: measurements) {
             measurement.setTimestamp(now.minus((long) counter * interval, ChronoUnit.SECONDS));
@@ -49,7 +49,7 @@ public class MeasurementService {
         return measurements;
     }
 
-    public List<MeasurementDto> getAllMeasurements(Long plantId, LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public List<MeasurementDto> getAllMeasurements(Long plantId, ZonedDateTime dateFrom, ZonedDateTime dateTo) {
         List<Measurement> measurements;
         if(dateFrom == null && dateTo == null) {
             measurements = measurementRepository.findTop15ByPlant_IdOrderByTimestampDesc(plantId);

@@ -6,12 +6,12 @@ import com.heating.system.iotdevice.model.Measurement_;
 import com.heating.system.iotdevice.model.Plant_;
 
 import javax.persistence.criteria.Predicate;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class MeasurementCustomRepositoryImpl extends AbstractBaseRepository implements MeasurementCustomRepository {
 
-    public List<Measurement> findAllByPlantIdAndDateBetween(Long plantId, LocalDateTime dateFrom, LocalDateTime dateTo) {
+    public List<Measurement> findAllByPlantIdAndDateBetween(Long plantId, ZonedDateTime dateFrom, ZonedDateTime dateTo) {
         var query = cb.createQuery(Measurement.class);
         var root = query.from(Measurement.class);
         var plantJoin = root.join(Measurement_.plant);
