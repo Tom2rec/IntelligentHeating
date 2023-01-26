@@ -8,6 +8,7 @@ import com.heating.system.iotdevice.model.dto.PlantDto;
 import com.heating.system.iotdevice.model.request.AddNewPlantRequest;
 import com.heating.system.iotdevice.model.request.UpdatePlantRequest;
 import com.heating.system.iotdevice.repository.IoTUserRepository;
+import com.heating.system.iotdevice.repository.MeasurementRepository;
 import com.heating.system.iotdevice.repository.PlantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class PlantService {
     private final PlantRepository plantRepository;
     private final PlantMapper plantMapper;
     private final IoTUserRepository ioTUserRepository;
+    private final MeasurementRepository measurementRepository;
 
     public List<PlantDto> getAllIoTUserPlants(UUID id) {
         return plantRepository.getPlantsByUser_Id(id).stream()
@@ -38,8 +40,13 @@ public class PlantService {
         Plant plant;
         var plantOpt = plantRepository.getPlantBySensorName(request.getSensorName());
         if(plantOpt.isPresent()) {
+            if(plantOpt.get().getUser().getId().equals(id)) {
+                return plantMapper.mapPlantToDto(plantOpt.get());
+            }
             plant = plantOpt.get();
             plant.setUser(user);
+            var measurements = measurementRepository.findAllByPlant_Id(plant.getId());
+            measurementRepository.deleteAll(measurements);
         } else {
             plant = new Plant();
             plant.setLocation(request.getLocation());
