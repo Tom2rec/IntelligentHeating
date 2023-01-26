@@ -21,5 +21,6 @@ public class PlantDto {
     private BigDecimal maxTemperature;
     private BigDecimal minHumidity;
     private BigDecimal maxHumidity;
+    private Integer pushIntervalInMinutes;
     private UUID userId;
 }

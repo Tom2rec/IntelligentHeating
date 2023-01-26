@@ -50,6 +50,9 @@ public class PlantService {
             plant.setMinHumidity(request.getMinHumidity());
             plant.setMaxHumidity(request.getMaxHumidity());
             plant.setUser(user);
+
+            var pushIntervalInMinutes = request.getPushIntervalInMinutes();
+            plant.setPushIntervalInMinutes(pushIntervalInMinutes != null ? pushIntervalInMinutes : 5);
         }
         var createdPlant = plantRepository.saveAndFlush(plant);
 
@@ -88,6 +91,9 @@ public class PlantService {
         }
         if(request.getMaxHumidity() != null) {
             plant.setMaxHumidity(request.getMaxHumidity());
+        }
+        if(request.getPushIntervalInMinutes() != null) {
+            plant.setPushIntervalInMinutes(request.getPushIntervalInMinutes());
         }
 
         plantRepository.save(plant);

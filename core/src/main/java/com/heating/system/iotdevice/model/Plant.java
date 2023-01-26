@@ -30,6 +30,7 @@ public class Plant extends BaseEntity {
     private BigDecimal maxTemperature;
     private BigDecimal minHumidity;
     private BigDecimal maxHumidity;
+    private Integer pushIntervalInMinutes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private IoTUser user;

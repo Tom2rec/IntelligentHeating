@@ -21,4 +21,5 @@ public class AddNewPlantRequest {
     private BigDecimal minHumidity;
     @NotNull
     private BigDecimal maxHumidity;
+    private Integer pushIntervalInMinutes;
 }
