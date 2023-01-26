@@ -10,4 +10,5 @@ import java.util.List;
 public interface MeasurementRepository extends JpaRepository<Measurement, Long>, MeasurementCustomRepository {
 
     List<Measurement> findTop15ByPlant_IdOrderByTimestampDesc(Long plantId);
+    List<Measurement> findAllByPlant_Id(Long plantId);
 }
